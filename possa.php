@@ -8,6 +8,8 @@
  * Plugin URI: https://www.akc-invent.cm/Possa
  */
 
+ require_once plugin_dir_path(__FILE__) . '/includes/activation.php';
+
  function possa_activation() {
     if(!possa_woocommerce_check ()) {
         deactivate_plugins(plugin_basename(__FILE__));
