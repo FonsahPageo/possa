@@ -16,7 +16,7 @@ if(!class_exists('Possa_Add_Menus')) {
 
         public function create_menus() {
             $this->menu_title           = 'Possa';
-            $this->slug                 = 'possa_documentation';
+            $this->slug                 = 'possa_activation';
             $this->image                = 'dashicons-smartphone';
             $this->page_title           = 'Possa';
 
@@ -25,13 +25,17 @@ if(!class_exists('Possa_Add_Menus')) {
                 $this->menu_title,
                 'manage_options',
                 $this->slug,
-                array($this, 'documentation_callback'),
+                array($this, 'activation_callback'),
                 $this->image,
             );
         }
 
-        public function documentation_callback() {
-            echo '<div class="wrap">' . esc_html($this->page_title) . '</div>';
+        public function activation_callback() {
+
+            $url = admin_url('admin.php?page=wc-settings&tab=checkout'); // Utilisation de admin_url() pour obtenir l'URL d'administration.
+
+            wp_safe_redirect($url);
+            exit();
         }
     }
     $possa_menus = new Possa_Add_Menus();

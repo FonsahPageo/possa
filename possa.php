@@ -8,10 +8,20 @@
  * Plugin URI: https://www.akc-invent.cm/Possa
  */
 
+//Inclusion de wooCommerce
+require_once plugin_dir_path(__FILE__) . '../woocommerce/woocommerce.php';
+
+
+// Vérification
  require_once plugin_dir_path(__FILE__) . '/includes/activation.php';
 
+ // Gateways
+ require_once plugin_dir_path(__FILE__) . '/includes/gateways/mtn/mtn.php';
+ require_once plugin_dir_path(__FILE__) . '/includes/gateways/orange/orange.php';
+
  // Menus
- require_once plugin_dir_path(__FILE__) . '/plugin-parts/admin-side/menus/add-menus.php';
+ require_once plugin_dir_path(__FILE__) . '/plugin-parts/admin-side/menus/add-menus.php'; 
+ require_once plugin_dir_path(__FILE__) . '/plugin-parts/admin-side/menus/add-submenus.php';
 
  
 // Activation du plugin 
