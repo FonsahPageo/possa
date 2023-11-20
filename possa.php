@@ -10,6 +10,11 @@
 
  require_once plugin_dir_path(__FILE__) . '/includes/activation.php';
 
+ // Menus
+ require_once plugin_dir_path(__FILE__) . '/plugin-parts/admin-side/menus/add-menus.php';
+
+ 
+// Activation du plugin 
  function possa_activation() {
     if(!possa_woocommerce_check ()) {
         deactivate_plugins(plugin_basename(__FILE__));
