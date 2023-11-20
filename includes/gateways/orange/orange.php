@@ -1,23 +1,23 @@
 <?php
 /**
- * Main file needed to add mtn gateway to woocommerce
+ * Main file needed to add Orange Money gateway to woocommerce
  */
 
  if(!defined('ABSPATH')) {
     return;
  }
 
- if (!class_exists('Mtn_Gateway')) {
+ if (!class_exists('Possa_Orange_Money_Gateway')) {
 
-    class Mtn_Gateway extends WC_Payment_Gateway  {
+    class Possa_Orange_Money_Gateway extends WC_Payment_Gateway  {
 
         public function __construct() {
-            $this->id                   = 'Mtn_mobile_money_gateway';
-            $this->title                = 'MTN Mobile Money';
+            $this->id                   = 'Possa_Orange_Money_Gateway';
+            $this->title                = 'Orange Money';
             $this->has_fields           = true;
-            $this->icon                 = plugin_dir_url(__FILE__) . '../../../images/mtn-mobile-money.jpg';
-            $this->method_title         = 'MTN Mobile Money';
-            $this->method_description   = 'Recevez des paiements par Mtn Mobile Money directement sur votre site ';
+            $this->icon                 = plugin_dir_url(__FILE__) . '../../../images/.jpg';
+            $this->method_title         = 'Orange Money';
+            $this->method_description   = 'Recevez des paiements grâce à Orange Money directement sur votre site ';
 
             // Ajouter les paramètres de la passerelle
             $this->init_form_fields();
@@ -41,15 +41,15 @@
                 'enabled'   => array(
                     'title'             => 'Activer / Désactiver ',
                     'type'              => 'checkbox',
-                    'label'             => 'Activer MTN Mobile Money Gateway',
+                    'label'             => 'Activer Orange Money Gateway ',
                     'default'           => 'yes',
                 ),
                 'title'    => array(
-                    'title'             => 'MoMo',
+                    'title'             => 'Orange Money',
                     'type'              => 'text',
                     'label'             => 'Titre',
                     'description'       => 'Le nom qui va s\'afficher sur la plateforme de paiement',
-                    'default'           => 'Momo',
+                    'default'           => 'Orange Money',
                     'desc_tip'          => true,
                 ),
                 'description'   => array(
@@ -66,19 +66,19 @@
                     'label'             => 'Instructions',
                 ),
                 'api_key'   => array(
-                    'title'             => 'MTN Mobile Money API Key',
+                    'title'             => 'Orange Money API Key',
                     'type'              => 'text',
-                    'label'             => 'Clé d\'Api Mtn Mobile Money',
+                    'label'             => 'Clé d\'Api Orange Money',
                 ),
                 'merchant_id'   => array(
                     'title'             => 'merchant_id',
                     'type'              => 'text',
-                    'default'           => '6 77 77 77 77 ',
+                    'default'           => '6 98 98 98 98 ',
                 ),
                 'api_secret'    => array(
-                    'title'             => 'MTN Mobile Miney API Secret',
+                    'title'             => 'Orange Money API Secret',
                     'type'              => 'text',
-                    'label'             => 'Secret D\'API MTN Mobile Money',
+                    'label'             => 'Secret D\'API Orange Money',
                     'default'           => '',
                 ),
             );
@@ -102,7 +102,7 @@
 
         // Utilisez cette méthode pour obtenir l'URL correcte de l'API en fonction du mode de test
         private function get_api_url() {
-            $base_url = $this->get_option('test_mode') === 'yes' ? 'URL_DE_MTN_MOBILE_MONEY_API_TEST' : 'URL_DE_MTN_MOBILE_MONEY_API';
+            $base_url = $this->get_option('test_mode') === 'yes' ? 'URL_DE_ORANGE_MONEY_API_TEST' : 'URL_DE_ORANGE_MONEY_API';
             return $base_url;
         }
 
@@ -122,7 +122,7 @@
 
             // Marquez la commande traitée
             $order = wc_get_order($order_id);
-            $order->update_status('processing', __('Paiement reçu via MTN Mobile Money. ', 'possa'));
+            $order->update_status('processing', __('Paiement reçu via Orange Money. ', 'possa'));
 
             // Rediriger l'utilisateur vers la page de réussite.
             return array(
@@ -145,10 +145,10 @@
     
 
     // Enregistrer la passerelle dans WooCommerce 
-    function add_mtn_gateway($gateways) {
-        $gateways[] = 'Mtn_Gateway';
+    function add_orange_gateway($gateways) {
+        $gateways[] = 'Possa_Orange_Money_Gateway';
         return $gateways;
     }
 
-    add_filter('woocommerce_payment_gateways', 'add_mtn_gateway');
+    add_filter('woocommerce_payment_gateways', 'add_orange_gateway');
 }
