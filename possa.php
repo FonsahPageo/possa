@@ -7,3 +7,13 @@
  * Author URI: https://www.akc-invent.cm
  * Plugin URI: https://www.akc-invent.cm/Possa
  */
+
+ function possa_activation() {
+    if(!possa_woocommerce_check ()) {
+        deactivate_plugins(plugin_basename(__FILE__));
+
+        wp_die('Woocommerce est requis pour le bon fonctionnement de Possa. Veuillez l\'installer et l\'activer');
+    }
+ }
+
+ register_activation_hook(__FILE__, 'possa_activation');
