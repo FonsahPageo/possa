@@ -1,23 +1,23 @@
 <?php
 /**
- * Main file needed to add mtn gateway to woocommerce
+ * Main file needed to add Orange Money gateway to woocommerce
  */
 
  if(!defined('ABSPATH')) {
     return;
  }
 
- if (!class_exists('Mtn_Gateway')) {
+ if (!class_exists('Possa_Mtn_Mobile_Money_Gateway')) {
 
-    class Mtn_Gateway extends WC_Payment_Gateway  {
+    class Possa_Mtn_Mobile_Money_Gateway extends WC_Payment_Gateway  {
 
         public function __construct() {
-            $this->id                   = 'Mtn_mobile_money_gateway';
-            $this->title                = 'MTN Mobile Money';
+            $this->id                   = 'Possa_Mtn_Mobile_Money_Gateway';
+            $this->title                = 'Mobile Money';
             $this->has_fields           = true;
             $this->icon                 = plugin_dir_url(__FILE__) . '../../../images/mtn-mobile-money.jpg';
-            $this->method_title         = 'MTN Mobile Money';
-            $this->method_description   = 'Recevez des paiements par Mtn Mobile Money directement sur votre site ';
+            $this->method_title         = 'Mobile Money';
+            $this->method_description   = 'Recevez des paiements grâce à MTN Mobile Money directement sur votre site ';
 
             // Ajouter les paramètres de la passerelle
             $this->init_form_fields();
@@ -41,15 +41,15 @@
                 'enabled'   => array(
                     'title'             => 'Activer / Désactiver ',
                     'type'              => 'checkbox',
-                    'label'             => 'Activer MTN Mobile Money Gateway',
-                    'default'           => 'yes',
+                    'label'             => 'Activer MTN Mobile Money Gateway ',
+                    'default'           => 'no',
                 ),
                 'title'    => array(
-                    'title'             => 'MoMo',
+                    'title'             => 'Mobile Money',
                     'type'              => 'text',
                     'label'             => 'Titre',
                     'description'       => 'Le nom qui va s\'afficher sur la plateforme de paiement',
-                    'default'           => 'Momo',
+                    'default'           => 'Mobile Money',
                     'desc_tip'          => true,
                 ),
                 'description'   => array(
@@ -68,7 +68,7 @@
                 'api_key'   => array(
                     'title'             => 'MTN Mobile Money API Key',
                     'type'              => 'text',
-                    'label'             => 'Clé d\'Api Mtn Mobile Money',
+                    'label'             => 'Clé d\'Api MTN Mobile Money',
                 ),
                 'merchant_id'   => array(
                     'title'             => 'merchant_id',
@@ -76,7 +76,7 @@
                     'default'           => '6 77 77 77 77 ',
                 ),
                 'api_secret'    => array(
-                    'title'             => 'MTN Mobile Miney API Secret',
+                    'title'             => 'MTN Mobile Money API Secret',
                     'type'              => 'text',
                     'label'             => 'Secret D\'API MTN Mobile Money',
                     'default'           => '',
@@ -96,7 +96,7 @@
 
         // Ajoutez une description pour le mode de test dans les paramètres de la passerelle
         public function add_test_mode_description($form_fields) {
-            $form_fields['test_mode']['description'] = 'Enable this to use the gateway in test mode.';
+            $form_fields['test_mode']['description'] = 'Activez ceci pour utiliser le moyen de paiement en mode test.';
             return $form_fields;
         }
 
@@ -145,10 +145,10 @@
     
 
     // Enregistrer la passerelle dans WooCommerce 
-    function add_mtn_gateway($gateways) {
-        $gateways[] = 'Mtn_Gateway';
+    function add_mtn_mobile_money_gateway($gateways) {
+        $gateways[] = 'Possa_Mtn_Mobile_Money_Gateway';
         return $gateways;
     }
 
-    add_filter('woocommerce_payment_gateways', 'add_mtn_gateway');
+    add_filter('woocommerce_payment_gateways', 'add_mtn_mobile_money_gateway');
 }
