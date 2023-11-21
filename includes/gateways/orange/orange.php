@@ -42,7 +42,7 @@
                     'title'             => 'Activer / Désactiver ',
                     'type'              => 'checkbox',
                     'label'             => 'Activer Orange Money Gateway ',
-                    'default'           => 'yes',
+                    'default'           => 'no',
                 ),
                 'title'    => array(
                     'title'             => 'Orange Money',
